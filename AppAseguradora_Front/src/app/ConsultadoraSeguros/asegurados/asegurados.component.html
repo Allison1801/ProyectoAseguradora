@@ -1,0 +1,156 @@
+<div class="header">
+    <h2>Seguros</h2>
+    <button class="btn btn-add" id="btnOpenForm" (click)="abrirPopup()" >
+        <i class="fa fa-plus-circle"></i>  Agregar Nuevo 
+    </button>
+</div>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Edad</th>
+            <th>Operación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let clientes of _asegurados let i = index">
+            <th scope="row">{{clientes.id}}</th>
+            <td>{{clientes.cedula}}</td>
+            <td>{{clientes.nombre}}</td>
+            <td>{{clientes.telefono}}</td>
+            <td>{{clientes.edad}}</td>
+            <td class="center">
+                <button class="btn btn-edit" (click)="abrirPopupEditar(clientes)"> <i class="fa fa-edit"></i> Editar</button>
+                <button class="btn btn-delete" (click)="EliminarAsegurados(clientes.id)"><i class="fa fa-trash"></i> Eliminar</button>
+            </td>
+        </tr>
+      
+        <!-- Agregar más filas según sea necesario -->
+    </tbody>
+</table>
+
+<!-- line modal -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" class="popup" id="popup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button (click)="cerrarPopup()" id="x">x</button>
+          </div>
+            
+                <div class="form-container">
+                    <h5>Registrar</h5>
+                    <hr>
+                    <p>Inserta nuevos asegurados</p>
+                    <form [formGroup]="formulario" (ngSubmit)="crearAsegurados()">
+                        <div class="form-group">
+                          <label for="nombre">Nombre:</label>
+                          <input type="text" name="nombre" formControlName="nombre" [(ngModel)]="nombre">
+                          <div *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
+                            <div *ngIf="formulario.get('nombre')?.errors?.['required']">El nombre es obligatorio.</div>
+                            <div *ngIf="formulario.get('nombre')?.errors?.['pattern']">El nombre solo debe contener letras.</div>
+                          </div>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="cedula">Cédula:</label>
+                          <input type="string" name="cedula" formControlName="cedula" [(ngModel)]="cedula" maxlength="10">
+                          <div *ngIf="formulario.get('cedula')?.touched && formulario.get('cedula')?.invalid">
+                            <div *ngIf="formulario.get('cedula')?.errors?.['required']">La cédula es obligatoria.</div>
+                            <div *ngIf="formulario.get('cedula')?.errors?.['pattern']">La cédula debe contener hasta 10 dígitos numéricos.</div>
+                          </div>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="telefono">Teléfono:</label>
+                          <input type="text" name="telefono" formControlName="telefono" [(ngModel)]="telefono" maxlength="10">
+                          <div *ngIf="formulario.get('telefono')?.touched && formulario.get('telefono')?.invalid">
+                            <div *ngIf="formulario.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</div>
+                            <div *ngIf="formulario.get('telefono')?.errors?.['pattern']">El teléfono debe contener 10 dígitos numéricos.</div>
+                          </div>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="edad">Edad:</label>
+                          <input type="text" name="edad" formControlName="edad" [(ngModel)]="edad">
+                          <div *ngIf="formulario.get('edad')?.touched && formulario.get('edad')?.invalid">
+                            <div *ngIf="formulario.get('edad')?.errors?.['required']">La edad es obligatoria.</div>
+                            <div *ngIf="formulario.get('edad')?.errors?.['pattern']">La edad debe ser un número.</div>
+                          </div>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="seguro">Seguro:</label>
+                          <input type="text" name="seguro" formControlName="seguro" [(ngModel)]="seguro">
+                          <div *ngIf="formulario.get('seguro')?.touched && formulario.get('seguro')?.invalid">
+                            <div *ngIf="formulario.get('seguro')?.errors?.['required']">El seguro es obligatorio.</div>
+                          </div>
+                        </div>
+                      
+                        <button class="btn btn-add" type="submit" [disabled]="formulario.invalid">Agregar</button>
+                      </form>
+                      <p>O</p>
+                     
+                      <form (submit)="uploadFile()" class="form-container2">
+                        <label for="excelFile">Seleccionar archivo Excel:</label>
+                        <input type="file" id="excelFile" (change)="handleFileInputAsegurados($event)">
+                        <button type="submit">Subir archivo</button>
+                      </form>
+                      
+                </div>
+          
+      </div>
+    </div>
+  </div>
+
+   <!-- line modal EDITAR -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" class="popupEditar" id="popupEditar">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button (click)="cerrarPopupEditar()" id="x">x</button>
+          </div>
+            
+                <div class="form-container">
+                    <h5>Modificar seguros</h5>
+                    
+                    <form [formGroup]="formulario" >
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" formControlName="nombre" [(ngModel)]="nombre">
+                        <div *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
+                            <div *ngIf="formulario.get('nombre')?.errors?.['required']">El nombre es obligatorio.</div>
+                            <div *ngIf="formulario.get('nombre')?.errors?.['pattern']">El nombre solo debe contener letras.</div>
+                          </div>
+                        <br>
+                        <label for="descripcion">Cedula:</label>
+                        <input type="text"name="cedula" formControlName="cedula" [(ngModel)]="cedula" maxlength="10">
+                        <div *ngIf="formulario.get('cedula')?.touched && formulario.get('cedula')?.invalid">
+                            <div *ngIf="formulario.get('cedula')?.errors?.['required']">La cédula es obligatoria.</div>
+                            <div *ngIf="formulario.get('cedula')?.errors?.['pattern']">La cédula debe contener hasta 10 dígitos numéricos.</div>
+                          </div>
+                        <br>
+                        <label for="descripcion">Telefono:</label>
+                        <input type="text" name="telefono" formControlName="telefono" [(ngModel)]="telefono" maxlength="10">
+                        <div *ngIf="formulario.get('telefono')?.touched && formulario.get('telefono')?.invalid">
+                            <div *ngIf="formulario.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</div>
+                            <div *ngIf="formulario.get('telefono')?.errors?.['pattern']">El teléfono debe contener 10 dígitos numéricos.</div>
+                          </div>
+                        <br>
+                        <label for="descripcion">Edad:</label>
+                        <input type="text" name="edad" formControlName="edad" [(ngModel)]="edad">
+                        <div *ngIf="formulario.get('edad')?.touched && formulario.get('edad')?.invalid">
+                            <div *ngIf="formulario.get('edad')?.errors?.['required']">La edad es obligatoria.</div>
+                            <div *ngIf="formulario.get('edad')?.errors?.['pattern']">La edad debe ser un número.</div>
+                          </div>
+                        <br>
+                        <button class="btn btn-add" (click)="ModificarAsegurados()" >Modificar</button>
+                    </form>
+                </div>
+          
+      </div>
+    </div>
+  </div>

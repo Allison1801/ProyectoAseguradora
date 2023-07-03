@@ -1,0 +1,139 @@
+<div class="header">
+    <h2>Seguros</h2>
+    <button class="btn btn-add" id="btnOpenForm" (click)="abrirPopup()" >
+        <i class="fa fa-plus-circle"></i>  Agregar Nuevo 
+    </button>
+</div>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Suma</th>
+            <th>Prima</th>
+            <th>Operación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let clientes of _seguros; let i = index">
+            <!-- <th scope="row">{{i + 1}}</th> -->
+            <th scope="row">{{clientes.id}}</th>
+            <td>{{clientes.nombre}}</td>
+            <td>{{clientes.suma}}</td>
+            <td>{{clientes.prima}}</td>
+           
+            <td class="center">
+                <button class="btn btn-edit" (click)="abrirPopupEditar(clientes)"> <i class="fa fa-edit"></i> Editar</button>
+                <button class="btn btn-delete" (click)="EliminarSeguros(clientes.id)"> <i class="fa fa-trash" ></i> Eliminar</button>
+            </td>
+        </tr>
+      
+        <!-- Agregar más filas según sea necesario -->
+    </tbody>
+</table>
+
+<!-- line modal REGISTRO -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" class="popup" id="popup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button (click)="cerrarPopup()" id="x">x</button>
+          </div>
+            
+                <div class="form-container">
+                    <h5>Registrar</h5>
+                    <hr>
+                    <p>Inserta nuevos seguros</p>
+                    <form [formGroup]="formulario" >
+                        <div class="form-group">
+                          <label for="nombre">Nombre:</label>
+                          <input type="text" id="nombre" class="form-control" formControlName="nombre" [(ngModel)]="nombre">
+                          <div *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
+                            <div *ngIf="formulario.get('nombre')?.errors?.['required']">El nombre es obligatorio.</div>
+                            <div *ngIf="formulario.get('nombre')?.errors?.['pattern']">El nombre solo debe contener letras.</div>
+                          </div>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="suma">Suma:</label>
+                          <input type="number" id="suma" class="form-control" formControlName="suma" [(ngModel)]="suma">
+                          <div *ngIf="formulario.get('suma')?.touched && formulario.get('suma')?.invalid">
+                            <div *ngIf="formulario.get('suma')?.errors?.['required']">La suma es obligatoria.</div>
+                            <div *ngIf="formulario.get('suma')?.errors?.['pattern']">La suma debe ser un número.</div>
+                          </div>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="prima">Prima:</label>
+                          <input type="number" id="prima" class="form-control" formControlName="prima" [(ngModel)]="prima">
+                          <div *ngIf="formulario.get('prima')?.touched && formulario.get('prima')?.invalid">
+                            <div *ngIf="formulario.get('prima')?.errors?.['required']">La prima es obligatoria.</div>
+                            <div *ngIf="formulario.get('prima')?.errors?.['pattern']">La prima debe ser un número.</div>
+                          </div>
+                        </div>
+                      
+                        <button class="btn btn-add" (click)="CrearSeguros()">Agregar</button>
+                       
+
+                      </form>
+
+                      <p>O</p>
+                     
+                      <form (submit)="uploadFile()" class="form-container2">
+                        <label for="excelFile">Seleccionar archivo Excel:</label>
+                        <input type="file" id="excelFile" (change)="handleFileInput($event)">
+                        <button type="submit">Subir archivo</button>
+                      </form>
+                      
+                </div>
+          
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+  
+
+  <!-- line modal EDITAR -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" class="popupEditar" id="popupEditar">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button (click)="cerrarPopupEditar()" id="x">x</button>
+          </div>
+            
+                <div class="form-container">
+                    <h5>Modificar seguros</h5>
+                    <form [formGroup]="formulario" >
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" formControlName="nombre" [(ngModel)]="nombre">
+                        <div *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
+                            <div *ngIf="formulario.get('nombre')?.errors?.['required']">El nombre es obligatorio.</div>
+                            <div *ngIf="formulario.get('nombre')?.errors?.['pattern']">El nombre solo debe contener letras.</div>
+                          </div>
+                        <br>
+                        <label for="descripcion">Suma:</label>
+                        <input type="text"name="suma" formControlName="suma" [(ngModel)]="suma">
+                        <div *ngIf="formulario.get('suma')?.touched && formulario.get('suma')?.invalid">
+                            <div *ngIf="formulario.get('suma')?.errors?.['required']">La suma es obligatoria.</div>
+                            <div *ngIf="formulario.get('suma')?.errors?.['pattern']">La suma debe ser un número.</div>
+                          </div>
+                        <br>
+                        <label for="descripcion">Prima:</label>
+                        <input type="text" name="prima" formControlName="prima" [(ngModel)]="prima">
+                        <div *ngIf="formulario.get('prima')?.touched && formulario.get('prima')?.invalid">
+                            <div *ngIf="formulario.get('prima')?.errors?.['required']">La prima es obligatoria.</div>
+                            <div *ngIf="formulario.get('prima')?.errors?.['pattern']">La prima debe ser un número.</div>
+                          </div>
+                        <br>
+                        <button class="btn btn-add" (click)="ModificarSeguros()">Modificar</button>
+                    </form>
+                </div>
+          
+      </div>
+    </div>
+  </div>

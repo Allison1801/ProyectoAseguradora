@@ -1,0 +1,221 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+h2{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header .btn{
+    font-size: 25px;
+    border-radius: 5px;
+}
+.form-container h5{
+    color:#787874 ;
+    text-align: center;
+    font-size: 25px;
+    font-family:"Righteous"; 
+    margin-top: -20px;
+    margin-bottom: 0px;
+}
+table th, table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.center {
+    text-align: center;
+}
+
+.btn {
+    font-size:16px;
+    padding: 6px 12px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius:5px;
+    margin:2px;
+}
+
+.btn-delete {
+    background-color: #f44336;
+}
+
+
+
+/* Modal */
+.popup{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    width: 520px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+     justify-content: center; 
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    visibility: hidden;
+    margin-top:100px;
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+
+.popup .card{
+    width: 100%;
+    height: 100%;
+    
+}
+.popup .transition{
+    margin-top: 45px;
+    margin-left: -7px;
+    height: 250px;
+    width: 325px;
+    border-radius: 10px;
+    font-family: 'Lato';
+}
+.popup .transition h2{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.popup button{
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    width: 205px;
+    height: 45px;
+    border-radius: 3px;
+    background-color: #F6D187;
+    color: #49525E;
+}
+.form-container {
+    padding-bottom: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+   
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form-container input, .form-container textarea {
+    width: 70%;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+}
+
+.form-container button {
+    margin-top: 10px;
+   
+}
+.modal-dialog{
+    width: 100%;
+}
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+#x{
+    font-size: 20px;
+   margin-left: 490px;
+    width: 6%;
+    height:16%;
+    border-radius: 85px;
+    background-color: red;
+    color: white;
+}
+
+/* modalEditar */
+.popupEditar{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    width: 520px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+     justify-content: center; 
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    visibility: hidden;
+    margin-top:100px;
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+
+.popupEditar .card{
+    width: 100%;
+    height: 100%;
+    
+}
+.popupEditar .transition{
+    margin-top: 45px;
+    margin-left: -7px;
+    height: 250px;
+    width: 325px;
+    border-radius: 10px;
+    font-family: 'Lato';
+}
+.popupEditar .transition h2{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.popupEditar button{
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    width: 205px;
+    height: 45px;
+    border-radius: 3px;
+    background-color: #F6D187;
+    color: #49525E;
+}
+
+.open-popupEditar{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.form-container2 input{
+    margin-left: 10%;
+ font-family: 'Courier New', Courier, monospace;
+}
+p{
+    font-family: 'Courier New', Courier, monospace;
+}

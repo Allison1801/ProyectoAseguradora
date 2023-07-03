@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="content">
+        <h2 class="title">Realizar consulta</h2>
+        <div id="regis">
+          <form [formGroup]="nuevoForm">
+            <div class="p-inputgroup ui-grid-col-6 ">
+              <label for=""> Por código: </label>
+              <input type="text" class="form-control"[(ngModel)]="idSeguro"  class="ng-dirty ng-invalid mr-4"  id="correo" name="codigo" formControlName="codigo" placeholder="Código"  >
+              <button class="btn" (click)="obtenerAseguradosPorId(idSeguro)"><i class="fa fa-search"></i></button>
+            </div>
+            <div class="p-inputgroup ui-grid-col-6">
+              <label for=""> Por cedula:  </label>
+              <input type="text" class="form-control" [(ngModel)]="cedula" id="contra" class="ng-dirty ng-invalid mr-4" name="cedula" formControlName="cedula" placeholder="Cédula">
+              <button class="btn"(click)="obtenerSegurosPorCedula(cedula)"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+          
+           
+      </div>
+      </div>
+</div>
+
+
+<div class="tabla">
+    <table class="table table-striped custab">
+        <thead>
+          <tr class="tabla"  >
+            <th scope="col">#</th>
+            <th scope="col">Cedula</th>
+            <th scope="col">Nombre Asegurado</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Edad</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of _asegurados">
+            <th scope="row"> {{item.id}}</th>
+            <td >{{item.cedula}}</td>
+            <td>{{item.nombre}}</td>
+            <td >{{item.telefono}}</td>
+            <td >{{item.edad}}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+</div>
+

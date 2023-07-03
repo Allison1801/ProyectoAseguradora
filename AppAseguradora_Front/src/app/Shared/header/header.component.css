@@ -1,0 +1,68 @@
+.header {
+    background-color: white;
+    width: 100%;
+    height: 60px;
+    position: relative;
+    display: block;
+  }
+
+
+  #header2{
+    background-image: radial-gradient(circle at 50% 22.26%, #787874 0, #505467 25%, #1f3259 50%, #00154b 75%, #00003e 100%);
+    height: 100px;
+  }
+  
+  #title {
+    font-family:'Righteous';
+    border-radius: 10px;
+    width: 100%;
+    height: 65px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  white;
+    font-size: 34px;
+    font-weight: bolder;
+  }
+  
+  /* Menu horizontal */
+#menu-horizontal {
+    width: 100%;
+    max-width: 440px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  #menu-horizontal ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #menu-horizontal ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  #menu-horizontal ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   
+  }
+  
+  #menu-horizontal ul li a:hover {
+    
+    border-bottom:  #787874  3px solid; 
+    
+  }
